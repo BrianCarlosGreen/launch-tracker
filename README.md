@@ -11,38 +11,25 @@ Primary data source: https://planet4589.org/space/gcat/tsv/derived/launchlog.tsv
 - **Backend:** Python FastAPI + SQLAlchemy + Alembic
 - **Frontend:** Next.js (App Router) + TypeScript
 
-## Prerequisites (exactly what to install)
-1. **Docker Desktop** for macOS (Apple Silicon supported)\n
-   - Download: https://www.docker.com/products/docker-desktop/
-   - After installing, **open Docker Desktop** and wait until it says “Docker Desktop is running”.
-
-Nothing else is required. You do **not** need Python or Node installed when using the Docker-only setup.
+## Prerequisites
+- Docker Desktop (macOS Apple Silicon supported)
 
 ## Quick start (Docker only, no local installs)
-Follow these steps exactly:
+```bash
+# From the repo root
 
-1. **Open Terminal**.
-2. **Change into the repository folder** (the folder that contains `docker-compose.yml`). Example:
-   ```bash
-   cd /path/to/launch-tracker
-   ```
-3. **Start the full stack** (database + API + frontend) with one command:
-   ```bash
-   docker compose up --build
-   ```
-   - The first run can take a few minutes because Docker builds the images and downloads the GCAT dataset.
-4. **Open the app** in your browser:
-   - http://localhost:3000
+docker compose up --build
+```
 
-### How to stop everything (and delete all data)
-When you’re done, return to the same Terminal window and press `Ctrl + C`, then run:
+Open http://localhost:3000 in your browser.
+
+To stop everything and remove the DB volume later:
 ```bash
 docker compose down -v
 ```
-This stops all containers and deletes the Postgres volume (all data).
 
 ## Optional: local development (Python + Node)
-If you prefer running the API and frontend directly on your machine (not required for Docker-only):
+If you prefer running the API and frontend directly on your machine, follow the steps below.
 
 ### Start database
 ```bash
