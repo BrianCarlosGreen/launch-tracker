@@ -11,42 +11,25 @@ Primary data source: https://planet4589.org/space/gcat/tsv/derived/launchlog.tsv
 - **Backend:** Python FastAPI + SQLAlchemy + Alembic
 - **Frontend:** Next.js (App Router) + TypeScript
 
-## Prerequisites (exactly what to install)
-1. **Docker Desktop** for macOS (Apple Silicon supported)
-   - Download: https://www.docker.com/products/docker-desktop/
-   - After installing, **open Docker Desktop** and wait until it says “Docker Desktop is running”.
+## Prerequisites
+- Docker Desktop (macOS Apple Silicon supported)
 
-Nothing else is required. You do **not** need Python or Node installed when using the Docker-only setup.
-
-## One-click setup (macOS Finder)
-If you want a one-click experience:
-1. Download or clone this repo.
-2. In Finder, open the `scripts/` folder.
-3. Double‑click **`run.command`**.
-   - macOS may warn you the first time. If it does, right‑click → **Open** → **Open**.
-4. Wait until the logs say the services are running.
-5. Open http://localhost:3000 in your browser.
-
-To stop everything and delete all data later, double‑click **`cleanup.command`** in the same folder.
-
-## Quick start (Terminal, one command)
-If you prefer Terminal, run this **single command** from the repo root (the folder that contains `docker-compose.yml`):
-
+## Quick start (Docker only, no local installs)
 ```bash
+# From the repo root
+
 docker compose up --build
 ```
 
 Open http://localhost:3000 in your browser.
 
-### How to stop everything (and delete all data)
-When you’re done, return to the same Terminal window and press `Ctrl + C`, then run:
+To stop everything and remove the DB volume later:
 ```bash
 docker compose down -v
 ```
-This stops all containers and deletes the Postgres volume (all data).
 
 ## Optional: local development (Python + Node)
-If you prefer running the API and frontend directly on your machine (not required for Docker-only):
+If you prefer running the API and frontend directly on your machine, follow the steps below.
 
 ### Start database
 ```bash
