@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:16
+    container_name: launch_tracker_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: launch_tracker
+    ports:
+      - "5432:5432"
+    volumes:
+      - launch_tracker_db_data:/var/lib/postgresql/data
+
+  api:
+    build:
+      context: ./backend
+    container_name: launch_tracker_api
+    environment:
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/launch_tracker
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: launch_tracker_frontend
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:8000
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+
+volumes:
+  launch_tracker_db_data:
